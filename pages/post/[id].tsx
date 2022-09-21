@@ -81,13 +81,12 @@ const Post: React.FC<PostProps> = (props) => {
     if (!props["post"]?.published) {
         title = `${title} (Draft)`;
     }
-
     return (
         <Layout>
             <div>
                 <div className={'post'}>
                     <h2>{title}</h2>
-                    <p className={'author'} onClick={() => Router.push("/profile/[id]", `/profile/${props["post"].authorId}`)}>Auteur : {props?.post?.author?.name || 'Unknown author'}</p>
+                    <p className={'author'} onClick={() => Router.push("/profile/[id]", `/profile/${props["post"].authorId}`)}>Auteur : {props["post"]?.author?.name || 'Unknown author'}</p>
                     <ReactMarkdown children={props["post"].content}/>
                     {!props["post"].published && userHasValidSession && postBelongsToUser && (
                         <button onClick={() => publishPost(props["post"].id)} className={'buttonpublish'}>Publier</button>
