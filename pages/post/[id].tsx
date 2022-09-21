@@ -59,13 +59,13 @@ const Post: React.FC<PostProps> = (props) => {
     const createComment = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            const body = {comment, postId: props.post.id};
+            const body = {comment, postId: props["post"].id};
             await fetch('/api/post/comment', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(body),
             });
-            await Router.push(`/post/${props.post.id}`);
+            await Router.push(`/post/${props["post"].id}`);
         } catch (error) {
             console.error(error);
         }
@@ -76,9 +76,9 @@ const Post: React.FC<PostProps> = (props) => {
     }
     const userHasValidSession = Boolean(session);
     console.log(props)
-    const postBelongsToUser = session?.user?.email === props.post?.author?.email;
-    let title = props.post?.title;
-    if (!props.post?.published) {
+    const postBelongsToUser = session?.user?.email === props["post"]?.author?.email;
+    let title = props["post"]?.title;
+    if (!props["post"]?.published) {
         title = `${title} (Draft)`;
     }
 
@@ -87,18 +87,18 @@ const Post: React.FC<PostProps> = (props) => {
             <div>
                 <div className={'post'}>
                     <h2>{title}</h2>
-                    <p className={'author'} onClick={() => Router.push("/profile/[id]", `/profile/${props.post.authorId}`)}>Auteur : {props?.post?.author?.name || 'Unknown author'}</p>
-                    <ReactMarkdown children={props.post.content}/>
-                    {!props.post.published && userHasValidSession && postBelongsToUser && (
-                        <button onClick={() => publishPost(props.post.id)} className={'buttonpublish'}>Publier</button>
+                    <p className={'author'} onClick={() => Router.push("/profile/[id]", `/profile/${props["post"].authorId}`)}>Auteur : {props?.post?.author?.name || 'Unknown author'}</p>
+                    <ReactMarkdown children={props["post"].content}/>
+                    {!props["post"].published && userHasValidSession && postBelongsToUser && (
+                        <button onClick={() => publishPost(props["post"].id)} className={'buttonpublish'}>Publier</button>
                     )}
                     {
                         userHasValidSession && postBelongsToUser && (
-                            <button onClick={() => deletePost(props.post.id)} className={'buttondelete'}>Delete</button>
+                            <button onClick={() => deletePost(props["post"].id)} className={'buttondelete'}>Delete</button>
                         )
                     }
                 </div>
-                {props.post.published &&
+                {props["post"].published &&
                     <>
                         <div className={'commentbox'}>
                             <h2>{'Ecrire un commentaire'}</h2>
@@ -121,7 +121,7 @@ const Post: React.FC<PostProps> = (props) => {
                         </div>
                         <div className="commentfeed">
                             <h2>{'Espace commentaire'}</h2>
-                            {props.comment.map((comment) => (
+                            {props["comment"].map((comment) => (
                                 <div key={comment.id}>
                                     <Comment comment={comment}/>
                                 </div>

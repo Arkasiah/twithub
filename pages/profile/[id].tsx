@@ -59,23 +59,23 @@ const Profile: React.FC<ProfileProps> = (props) => {
     }
     const userHasValidSession = Boolean(session);
     console.log(props)
-    const postBelongsToUser = session?.user?.email === props.post?.author?.email;
+    const postBelongsToUser = session?.user?.email === props["post"]?.author?.email;
 
     return (
         <Layout>
             <div>
                 <div className={'profile'}>
-                    <h2>{props.user.name}</h2>
-                    <p>Mail : {props.user.email}</p>
-                    <p>Nombre de post : {props.post.length}</p>
+                    <h2>{props["user"].name}</h2>
+                    <p>Mail : {props["user"].email}</p>
+                    <p>Nombre de post : {props["post"].length}</p>
                 </div>
 
-                {props.post.map((post) => (
+                {props["post"].map((post) => (
                     <div key={post.id} className="post">
                         <Post post={post} />
                     </div>
                 ))}
-                {props.post.length === 0 &&
+                {props["post"].length === 0 &&
                     <div>Aucun post publié</div>
                 }
             </div>

@@ -20,7 +20,7 @@ const Comment: React.FC<{ comment: CommentProps }> = ({ comment }) => {
     const authorName = comment.author ? comment.author.name : "Unknown author";
     return (
         <div>
-            <p className={'author'} onClick={() => Router.push("/profile/[id]", `/profile/${comment.authorId}`)}>@{authorName}</p>
+            <p className={'author'} onClick={() => Router.push("/profile/[id]", `/profile/${comment["authorId"]}`)}>@{authorName}</p>
             <ReactMarkdown children={comment.body} />
             <style jsx>{`
         div {
