@@ -60,7 +60,7 @@ const Post: React.FC<PostProps> = (props) => {
         e.preventDefault();
         try {
             const body = {comment, postId: props["post"].id};
-            await fetch('/api/post/comment', {
+            await fetch(`${process.env.NEXTAUTH_URL}/post/comment`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(body),
