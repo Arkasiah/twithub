@@ -19,7 +19,7 @@ const Draft: React.FC = () => {
     const submitData = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            const body = {title, content};
+            const body = {title, content, email: session.user.email};
             await fetch('/api/post', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
