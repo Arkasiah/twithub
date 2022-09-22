@@ -28,7 +28,6 @@ const Post: React.FC<{ post: PostProps }> = ({ post }) => {
         .post {
         cursor: pointer;
         }
-
       `}</style>
     </div>
   );
