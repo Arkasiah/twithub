@@ -16,5 +16,6 @@ export default async function handle(req, res) {
             post: {connect: {id: postId}}
         },
     });
+    console.log("result", result);
     res.json(result);
 }
