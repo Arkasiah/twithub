@@ -17,8 +17,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     },
   });
   return {
-  props: { feed },
-    revalidate: 10,
+  props: { feed }
   };
 };
 
