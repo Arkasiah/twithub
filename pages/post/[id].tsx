@@ -59,7 +59,7 @@ const Post: React.FC<PostProps> = (props) => {
     const createComment = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         try {
-            const body = {comment, postId: props["post"].id};
+            const body = {comment, postId: props["post"].id, email: session.user.email};
             await fetch(`/api/post/comment`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
