@@ -7,6 +7,7 @@ import prisma from '../../../lib/prisma';
 export default async function handle(req, res) {
     const { comment, postId } = req.body;
     console.log('comment : ', comment);
+
     const session = await getSession({ req });
     const result = await prisma.comment.create({
         data: {
