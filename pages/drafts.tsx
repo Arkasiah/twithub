@@ -6,7 +6,8 @@ import Post, { PostProps } from '../components/Post';
 import prisma from '../lib/prisma';
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-    const session = await getSession({ req });
+    const { data: session } = useSession();
+    console.log("sessssiooonnnn :",session);
     if (!session) {
         res.statusCode = 403;
         return { props: { drafts: [] } };
